@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 408
+      author: Shiva(508201)
+      labels: ddl-topic-type
+      failOnError: true
+      runInTransaction: true
+      changes:
+        - sqlFile:
+            path: scripts/topic-type.sql
+            relativeToChangelogFile: true

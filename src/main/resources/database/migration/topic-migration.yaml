@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: ddl-topic-lte
+      author: Liquibase
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: TOPIC
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: TOPIC_ID
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: TOPIC_NAME
+                  type: VARCHAR(250)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: TOPIC_DESC
+                  type: VARCHAR(250)
+            tableName: TOPIC
+

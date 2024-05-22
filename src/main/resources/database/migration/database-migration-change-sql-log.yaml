@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: database/migration/user-migration.yaml
+  - include:
+      file: database/migration/topic-migration.yaml

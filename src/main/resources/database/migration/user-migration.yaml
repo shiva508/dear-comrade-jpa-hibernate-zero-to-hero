@@ -1,0 +1,78 @@
+databaseChangeLog:
+  - changeSet:
+      id: ddl-userprofile
+      author: Liquibase
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: USER_PROFILE
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: USER_ID
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: USER_NAME
+                  type: VARCHAR(250)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: FIRST_NAME
+                  type: VARCHAR(250)
+              - column:
+                  name: LAST_NAME
+                  type: VARCHAR(250)
+            tableName: USER_PROFILE
+
+  - changeSet:
+      id: ddl-user-role
+      author: Liquibase
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: USER_ROLE
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: ROLE_ID
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: ROLE_NAME
+                  type: VARCHAR(250)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: ROLE
+                  type: VARCHAR(250)
+              - column:
+                  name: ROLE_DESC
+                  type: VARCHAR(250)
+            tableName: USER_ROLE
+  - changeSet:
+      id: ddl-add-new-column
+      author: Liquibase
+      changes:
+        - addColumn:
+            tableName: USER_PROFILE
+            columns:
+              - column:
+                  name: USER_AVATAR
+                  type: VARCHAR(500)
