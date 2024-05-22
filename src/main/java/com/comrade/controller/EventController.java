@@ -1,7 +1,9 @@
 package com.comrade.controller;
 
 import com.comrade.entity.Event;
+import com.comrade.entity.EventType;
 import com.comrade.service.EventService;
+import org.hibernate.type.EntityType;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,7 @@ public class EventController {
 
     @PostMapping("/save")
     public Event save(@RequestBody Event event) {
+        //event.setEventType(EventType.valueOf(event.getEv().toUpperCase()));
         return eventService.save(event);
     }
 
