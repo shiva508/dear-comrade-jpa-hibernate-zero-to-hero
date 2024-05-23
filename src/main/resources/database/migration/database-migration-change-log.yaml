@@ -1,3 +1,0 @@
-databaseChangeLog:
-  - include:
-      file: database/migration/topic-type-migration.yaml
