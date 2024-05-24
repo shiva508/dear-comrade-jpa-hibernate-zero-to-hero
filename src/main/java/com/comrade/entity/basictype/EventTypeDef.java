@@ -59,12 +59,12 @@ public class EventTypeDef implements UserType<EventType> {
     @Override
     public void nullSafeSet(PreparedStatement preparedStatement,
                             EventType eventType,
-                            int i,
+                            int index,
                             SharedSessionContractImplementor sharedSessionContractImplementor) throws SQLException {
         if (eventType == null){
-            preparedStatement.setInt(2,0);
+            preparedStatement.setInt(index,0);
         }else {
-            preparedStatement.setInt(2,eventTypes[i].ordinal());
+            preparedStatement.setInt(index,eventType.ordinal());
         }
 
     }
