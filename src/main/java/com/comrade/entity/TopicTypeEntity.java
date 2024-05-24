@@ -17,7 +17,7 @@ public class TopicTypeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TOPIC_TYPE_ID")
-    private Long topicTypeId;
+    private Integer topicTypeId;
 
     @Column(name = "TOPIC_TYPE_NAME")
     private String topicTypeName;

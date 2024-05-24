@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.io.Serializable;
 
@@ -28,6 +30,7 @@ public class TopicEntity implements Serializable {
               cascade = CascadeType.ALL,
               fetch = FetchType.EAGER,
               orphanRemoval = true)
+    //@Fetch(FetchMode.JOIN)
     private TopicDetailsEntity topicDetailsEntity;
 
     public void addDetails(TopicDetailsEntity newTopicDetailsEntity){

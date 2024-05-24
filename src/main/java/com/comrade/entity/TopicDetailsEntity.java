@@ -20,7 +20,7 @@ public class TopicDetailsEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TOPIC_DETAILS_ID")
-    private Integer topicDetailsId;
+    private Long topicDetailsId;
 
     @Column(name = "HEADER")
     private String header;
@@ -29,7 +29,7 @@ public class TopicDetailsEntity implements Serializable {
     private String details;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TOPIC_ID")
+    @MapsId
     @JsonBackReference
     private TopicEntity topicEntity;
 }
