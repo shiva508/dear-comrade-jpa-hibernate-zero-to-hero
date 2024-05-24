@@ -1,5 +1,6 @@
 package com.comrade.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,15 +24,22 @@ public class TopicEntity implements Serializable {
     @Column(name = "TOPIC_NAME")
     private String topicName;
 
-    /*
-    This type of mapping is used when we need to persist parent and child, there is no pre-saved data involved
-     */
-
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "TOPIC_DETAILS_ID", referencedColumnName = "TOPIC_DETAILS_ID")
+    @OneToOne(mappedBy = "topicEntity",
+              cascade = CascadeType.ALL,
+              fetch = FetchType.EAGER,
+              orphanRemoval = true)
     private TopicDetailsEntity topicDetailsEntity;
 
-    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST},fetch = FetchType.EAGER)
-    private TopicTypeEntity topicTypeEntity;
+    public void addDetails(TopicDetailsEntity newTopicDetailsEntity){
+        newTopicDetailsEntity.setTopicEntity(this);
+        this.setTopicDetailsEntity(newTopicDetailsEntity);
+    }
+
+    public void removeDetails(){
+            if (this.topicDetailsEntity != null){
+                this.topicDetailsEntity.setTopicEntity(null);
+                this.topicDetailsEntity = null;
+            }
+    }
 
 }

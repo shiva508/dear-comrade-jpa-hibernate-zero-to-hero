@@ -1,9 +1,12 @@
 package com.comrade.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.io.Serializable;
 
 @Entity
@@ -11,6 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 public class TopicDetailsEntity implements Serializable {
 
     @Id
@@ -23,4 +27,9 @@ public class TopicDetailsEntity implements Serializable {
 
     @Column(name = "DETAILS")
     private String details;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TOPIC_ID")
+    @JsonBackReference
+    private TopicEntity topicEntity;
 }
