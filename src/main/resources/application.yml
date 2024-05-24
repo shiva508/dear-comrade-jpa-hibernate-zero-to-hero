@@ -8,21 +8,10 @@ spring:
     hikari:
       connection-timeout: 2000
       maximum-pool-size: 5
-  topic-type:
-    datasource:
-      password: sa
-      username: sa
-      url: jdbc:h2:mem:topictype
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
-  flyway:
-    url: jdbc:postgresql://172.21.0.2:5432/dha
-    user: comrade
-    password: dear
-    baseline-on-migrate: true
-#    table: db_migration_tracking
 
 server:
   tomcat:
