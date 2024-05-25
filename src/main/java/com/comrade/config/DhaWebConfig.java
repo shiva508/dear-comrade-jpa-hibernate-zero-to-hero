@@ -14,6 +14,8 @@ public class DhaWebConfig implements WebMvcConfigurer {
             @Override
             public void addFormatters(FormatterRegistry registry) {
                 registry.addConverter(new EntityTypeToEnumConverter());
+                registry.addConverter(new DeliveryTypeToEnumConverter());
+                registry.addConverter(new OrderTypeToEnumConverter());
             }
         };
     }
