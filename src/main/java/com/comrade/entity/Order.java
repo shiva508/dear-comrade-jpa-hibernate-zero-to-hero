@@ -1,9 +1,7 @@
 package com.comrade.entity;
 
-import com.comrade.config.HotelTypeConverter;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Formula;
 import java.io.Serializable;
 
 @Entity
@@ -12,6 +10,10 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 @Setter
+@AttributeOverrides({@AttributeOverride(name = "originLocation.village",column = @Column(name = "ORG_VILLAGE")),
+                     @AttributeOverride(name = "originLocation.street", column = @Column(name = "ORG_STREET")),
+                     @AttributeOverride(name = "destinationLocation.village",column = @Column(name = "DEST_VILLAGE")),
+                     @AttributeOverride(name = "destinationLocation.street",column = @Column(name = "DEST_STREET"))})
 public class Order implements Serializable {
 
     @Id
@@ -24,16 +26,7 @@ public class Order implements Serializable {
 
     private Double offer;
 
-    @Formula(value = "(price * offer) * 100" )
-    private Double totalPrice;
+    private Location originLocation;
 
-    @Enumerated(EnumType.ORDINAL)
-    private OrderType orderType;
-
-    @Enumerated(EnumType.STRING)
-    private DeliveryType deliveryType;
-
-    @Convert(converter = HotelTypeConverter.class)
-    private HotelType hotelType;
-
+    private Location destinationLocation;
 }
