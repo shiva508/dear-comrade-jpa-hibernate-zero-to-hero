@@ -2,13 +2,21 @@ spring:
   application:
     name: dear-comrade-jpa-hibernate-zero-to-hero
   datasource:
-    url: jdbc:postgresql://172.21.0.2:5432/dha
+    url: jdbc:postgresql://localhost:5432/dha
     username: comrade
     password: dear
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+    properties:
+      hibernate:
+        order_inserts: true
+        order_updates: true
+        jdbc:
+          batch_size: 10
+
+
 
 springdoc:
   swagger-ui:

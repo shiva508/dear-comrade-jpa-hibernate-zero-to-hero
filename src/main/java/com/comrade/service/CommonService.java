@@ -7,4 +7,5 @@ public interface CommonService<E> {
 
     E save(E e);
     List<E> fetchAll();
+    void update();
 }
