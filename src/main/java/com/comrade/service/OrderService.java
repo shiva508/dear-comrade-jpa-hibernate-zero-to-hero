@@ -1,7 +1,7 @@
 package com.comrade.service;
 
 import com.comrade.entity.Order;
-import com.comrade.repository.OrderRepository;
+import com.comrade.repository.CommonRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class OrderService implements CommonService<Order>{
 
-    private final OrderRepository orderRepository;
+    private final CommonRepository orderRepository;
 
     @Override
     public Order save(Order order) {
