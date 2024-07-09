@@ -34,6 +34,9 @@
 #### @Transactional
 #### N+1 issue
 #### Projections
+#### hikari.auto-commit: false
+#### jpa.open-in-view: false
+
 
 https://vladmihalcea.com/tutorials/flexypool/
 
