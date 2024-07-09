@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.domain.Persistable;
 
 import java.io.Serializable;
 
@@ -15,7 +16,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 @Setter
-public class TopicDetailsEntity implements Serializable {
+public class TopicDetailsEntity implements Serializable, Persistable<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,4 +33,14 @@ public class TopicDetailsEntity implements Serializable {
     @MapsId
     @JsonBackReference
     private TopicEntity topicEntity;
+
+    @Override
+    public Long getId() {
+        return topicDetailsId;
+    }
+
+    @Override
+    public boolean isNew() {
+        return topicDetailsId == null ? true: false;
+    }
 }

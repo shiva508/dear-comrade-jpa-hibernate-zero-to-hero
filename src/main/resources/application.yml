@@ -14,7 +14,9 @@ spring:
       idle-timeout: 120000
       connection-timeout: 300000
       leak-detection-threshold: 300000
+      auto-commit: false
   jpa:
+    open-in-view: false
     hibernate:
       ddl-auto: update
     show-sql: true
@@ -36,4 +38,13 @@ server:
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
+
+decorator:
+  datasource:
+    flexy-pool:
+      threshold:
+        connection:
+          acquire: -1
+          lease: 0
+
 

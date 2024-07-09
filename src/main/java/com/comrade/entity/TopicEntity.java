@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.data.domain.Persistable;
 
 import java.io.Serializable;
 
@@ -17,7 +18,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 @Setter
-public class TopicEntity implements Serializable {
+public class TopicEntity implements Serializable , Persistable<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TOPIC_ID")
@@ -45,4 +46,13 @@ public class TopicEntity implements Serializable {
             }
     }
 
+    @Override
+    public Long getId() {
+        return topicId;
+    }
+
+    @Override
+    public boolean isNew() {
+        return topicId == null;
+    }
 }
