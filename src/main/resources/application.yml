@@ -1,16 +1,37 @@
+server:
+  port: 8080
+  tomcat:
+    connection-timeout: 2s
+    keep-alive-timeout: 15s
+    threads:
+      min-spare: 5
+      max: 50
 spring:
   application:
-    name: dear-comrade-jpa-hibernate-zero-to-hero
+    name: zero_to_hero_rules_engine
   datasource:
-    url: jdbc:postgresql://172.21.0.2:5432/dha
-    username: comrade
-    password: dear
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-
+    username: dear
+    password: comrade
+    #url: jdbc:postgresql://172.19.0.2:5432/dear_comrade
+    url: jdbc:postgresql://localhost:5432/dear_comrade
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 2000
+      maximum-pool-size: 5
+    jpa:
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+      hibernate:
+        ddl-auto: update
+        show-sql: true
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
-
+drool:
+  template: rools/route.drl
+  drool-domine-name: ruleResult
+  title: Comrade Drool Engine
+  nav-name: Comrade Rules
+  header-title: Telangana Travel Rules
+  add-condition: Conditions
