@@ -1,9 +1,7 @@
 package com.comrade.service.condition;
 
-import com.pool.domine.ConditionModel;
-import com.pool.domine.RuleModel;
-import com.pool.entity.ConditionEntity;
-import com.pool.entity.RuleEntity;
+import com.comrade.domine.ConditionModel;
+import com.comrade.entity.ConditionEntity;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package com.comrade.service.rule;
 
-import com.pool.domine.RuleModel;
-import com.pool.entity.RuleEntity;
-import org.springframework.stereotype.Component;
+
+import com.comrade.domine.RuleModel;
+import com.comrade.entity.RuleEntity;
 
 import java.util.List;
 

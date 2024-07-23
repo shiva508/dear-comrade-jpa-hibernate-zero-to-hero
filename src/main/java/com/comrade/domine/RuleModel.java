@@ -1,6 +1,6 @@
 package com.comrade.domine;
 
-import com.pool.entity.RuleEntity;
+import com.comrade.entity.RuleEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,9 +1,12 @@
 package com.comrade.controller;
 
-import com.pool.domine.RuleModel;
-import com.pool.domine.RuleResult;
-import com.pool.entity.RuleEntity;
-import com.pool.service.rule.RuleService;
+import com.comrade.domine.Branch;
+import com.comrade.domine.Person;
+import com.comrade.domine.RuleModel;
+import com.comrade.domine.RuleResult;
+import com.comrade.entity.RuleEntity;
+import com.comrade.service.StudentpoolDroolsService;
+import com.comrade.service.rule.RuleService;
 import org.drools.template.ObjectDataCompiler;
 import org.kie.api.builder.Message;
 import org.kie.api.builder.Results;
@@ -13,10 +16,6 @@ import org.kie.internal.io.ResourceFactory;
 import org.kie.internal.utils.KieHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.pool.domine.Branch;
-import com.pool.domine.Person;
-import com.pool.service.StudentpoolDroolsService;
 
 import java.io.IOException;
 import java.io.InputStream;

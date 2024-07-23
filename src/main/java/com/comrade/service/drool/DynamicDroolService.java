@@ -1,11 +1,11 @@
 package com.comrade.service.drool;
 
-import com.pool.configuration.DroolConfiguration;
-import com.pool.domine.Branch;
-import com.pool.domine.RuleModel;
-import com.pool.domine.RuleResult;
-import com.pool.repository.RuleRepository;
-import com.pool.service.rule.RuleService;
+import com.comrade.configuration.DroolConfiguration;
+import com.comrade.domine.Branch;
+import com.comrade.domine.RuleModel;
+import com.comrade.domine.RuleResult;
+import com.comrade.repository.RuleRepository;
+import com.comrade.service.rule.RuleService;
 import lombok.extern.slf4j.Slf4j;
 import org.drools.template.ObjectDataCompiler;
 import org.kie.api.builder.Message;

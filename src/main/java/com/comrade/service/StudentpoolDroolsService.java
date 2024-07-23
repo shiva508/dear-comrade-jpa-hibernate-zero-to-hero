@@ -1,13 +1,11 @@
 package com.comrade.service;
 
+import com.comrade.domine.Branch;
+import com.comrade.domine.Person;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.pool.domine.Branch;
-import com.pool.domine.Person;
-import com.pool.modal.RULESESSIONS;
 
 @Component
 public class StudentpoolDroolsService {

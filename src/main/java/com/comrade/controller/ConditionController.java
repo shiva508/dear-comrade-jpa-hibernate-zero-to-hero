@@ -1,8 +1,8 @@
 package com.comrade.controller;
 
-import com.pool.domine.ConditionModel;
-import com.pool.entity.ConditionEntity;
-import com.pool.service.condition.ConditionService;
+import com.comrade.domine.ConditionModel;
+import com.comrade.entity.ConditionEntity;
+import com.comrade.service.condition.ConditionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
