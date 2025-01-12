@@ -69,7 +69,7 @@ public class NewsServiceImpl implements NewsService{
             NewsSearchSpecification newsSearchSpecification = new NewsSearchSpecification();
 
             boolean isTitleFilter = specificationBuilder.isFilterApplied(searchModel.getNewsTitle());
-            specificationBuilder.queryGenerator(isTitleFilter, newsSearchSpecification, "newsTitle",searchModel.getNewsTitle(), OperationType.LIKE, false);
+            specificationBuilder.queryGenerator(isTitleFilter, newsSearchSpecification, "newsTitle", searchModel.getNewsTitle(), OperationType.LIKE, false);
 
             boolean isChildOpnDescTitleFilter = specificationBuilder.isFilterApplied(searchModel.getChildOpinionDesc());
 
