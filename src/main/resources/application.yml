@@ -2,7 +2,7 @@ spring:
   application:
     name: dear-comrade-jpa-hibernate-zero-to-hero
   datasource:
-    url: jdbc:postgresql://172.21.0.2:5432/dha
+    url: jdbc:postgresql://localhost:5432/dha
     username: comrade
     password: dear
     hikari:
@@ -12,6 +12,7 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+    open-in-view: false
 
 server:
   tomcat:
@@ -24,3 +25,5 @@ springdoc:
   swagger-ui:
     path: /swagger-ui.html
 
+mapper:
+  news: "newsId,newsTitle,newsAuthor,createdAt,modifiedAt,opinions"
