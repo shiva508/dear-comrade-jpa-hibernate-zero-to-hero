@@ -26,10 +26,5 @@ public class OpinionEntity implements Serializable {
     @Column(name = "LEADER_NAME")
     private String leaderName;
 
-    @ManyToOne
-    @JsonIgnore
-    @ToString.Exclude
-    public NewsEntity newsEntity;
-
 
 }

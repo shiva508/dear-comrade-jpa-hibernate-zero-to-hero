@@ -30,12 +30,7 @@ public class NewsEntity implements Serializable {
     @Column(name = "MODIFIED_AT")
     private Timestamp modifiedAt;
 
-    @OneToMany(mappedBy = "newsEntity", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<OpinionEntity> opinions = new ArrayList<>();
-
-    public void addOpinion(OpinionEntity opinionEntity){
-        opinions.add(opinionEntity);
-        opinionEntity.setNewsEntity(this);
-    }
 
 }

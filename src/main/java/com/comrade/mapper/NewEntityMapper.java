@@ -19,11 +19,12 @@ public class NewEntityMapper {
         List<OpinionModel> opinionModels = newsModel.getOpinions();
         BeanUtils.copyProperties(newsModel, newsEntity);
         newsEntity.getOpinions().clear();
-        opinionModels.forEach(opinionModel -> {
+        List<OpinionEntity> opinionEntities = opinionModels.stream().map(opinionModel -> {
             OpinionEntity opinionEntity = new OpinionEntity();
             BeanUtils.copyProperties(opinionModel, opinionEntity);
-            newsEntity.addOpinion(opinionEntity);
-        });
+            return opinionEntity;
+        }).toList();
+        newsEntity.setOpinions(opinionEntities);
         return newsEntity;
     }
 
