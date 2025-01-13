@@ -39,4 +39,17 @@ public interface NewsRepository extends JpaRepository<NewsEntity, Long>,
     })
     Page<NewsEntity> findAll(Predicate predicate, Pageable pageable);
 
+    //
+//    @EntityGraph(type = EntityGraph.EntityGraphType.FETCH,
+//            attributePaths = {
+//                    "newsId",
+//                    "newsTitle",
+//                    "newsAuthor",
+//                    "createdAt",
+//                    "modifiedAt",
+//                    "opinions"
+//            })
+    //@Query("SELECT newsEntity From NewsEntity newsEntity JOIN FETCH newsEntity.opinions")
+    @EntityGraph("NewsEntity.opinions")
+    List<NewsEntity> findAll();
 }
