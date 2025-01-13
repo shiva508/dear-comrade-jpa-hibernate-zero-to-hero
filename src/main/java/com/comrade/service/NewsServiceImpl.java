@@ -1,6 +1,8 @@
 package com.comrade.service;
 
 import com.comrade.entity.NewsEntity;
+import com.comrade.entity.QNewsEntity;
+import com.comrade.entity.QOpinionEntity;
 import com.comrade.entity.specification.NewsSearchSpecification;
 import com.comrade.mapper.SpecificationBuilder;
 import com.comrade.exception.NewsException;
@@ -10,6 +12,7 @@ import com.comrade.model.SearchModel;
 import com.comrade.model.SearchResultModel;
 import com.comrade.repository.NewsRepository;
 import com.comrade.util.OperationType;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -79,11 +82,32 @@ public class NewsServiceImpl implements NewsService{
             Page<NewsEntity> newsEntities = newsRepository.findAll(newsSearchSpecification, pageable);
 
             SearchResultModel searchResultModel = newEntityMapper.searchResultMapper(newsEntities);
-            log.info("fetchBySearchCriteria::started");
+            log.info("fetchBySearchCriteria::completed");
             return searchResultModel;
         } catch (Exception exception){
             log.error("fetchAll::error ",exception);
             throw new NewsException(exception.getMessage());
         }
+    }
+
+    @Override
+    public SearchResultModel searchByQueryDsl(SearchModel searchModel){
+        try {
+            log.info("searchByQueryDsl::started");
+            boolean isTitleFilter = specificationBuilder.isFilterApplied(searchModel.getNewsTitle());
+            QNewsEntity qNewsEntity = QNewsEntity.newsEntity;
+            QOpinionEntity qOpinionEntity = QOpinionEntity.opinionEntity;
+            //BooleanExpression eq = qOpinionEntity.leaderName.eq(searchModel.getChildOpinionDesc());
+            BooleanExpression like = qNewsEntity.newsTitle.like("%" + searchModel + "%");
+            Pageable pageable = PageRequest.of(searchModel.getPage(), searchModel.getSize());
+            Page<NewsEntity> newsEntities = newsRepository.findAll(like, pageable);
+            SearchResultModel searchResultModel = newEntityMapper.searchResultMapper(newsEntities);
+            log.info("searchByQueryDsl::completed");
+            return searchResultModel;
+        } catch (Exception exception){
+            log.error("searchByQueryDsl::error ",exception);
+            throw new NewsException(exception.getMessage());
+        }
+
     }
 }

@@ -15,4 +15,6 @@ public interface NewsService {
     List<NewsEntity> fetchAll();
 
     SearchResultModel fetchBySearchCriteria(SearchModel searchModel);
+
+    SearchResultModel searchByQueryDsl(SearchModel searchModel);
 }

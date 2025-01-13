@@ -36,8 +36,19 @@ public class NewsController {
         return new ResponseEntity<>(newsEntities, HttpStatus.OK);
     }
 
-    @PostMapping("/search")
-    public SearchResultModel fetchBySearchCriteria(@RequestBody SearchModel searchModel){
-        return newsService.fetchBySearchCriteria(searchModel);
+    @PostMapping("/search-specification")
+    public ResponseEntity<SearchResultModel> fetchBySearchCriteria(@RequestBody SearchModel searchModel){
+        log.info("fetchBySearchCriteria::started");
+        SearchResultModel searchResultModel = newsService.fetchBySearchCriteria(searchModel);
+        log.info("fetchBySearchCriteria::completed");
+        return new ResponseEntity<>(searchResultModel,HttpStatus.OK);
+    }
+
+    @PostMapping("/search-querydsl")
+    public ResponseEntity<SearchResultModel> searchByQueryDsl(SearchModel searchModel){
+        log.info("searchByQueryDsl::started");
+        SearchResultModel searchResultModel = newsService.searchByQueryDsl(searchModel);
+        log.info("searchByQueryDsl::completed");
+        return new ResponseEntity<>(searchResultModel,HttpStatus.OK);
     }
 }
