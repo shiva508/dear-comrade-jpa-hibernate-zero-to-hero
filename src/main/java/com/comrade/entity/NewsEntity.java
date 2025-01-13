@@ -10,6 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "NEWS_TBL")
 @Data
+@NamedEntityGraph(name = "NewsEntity.opinions",attributeNodes = @NamedAttributeNode("opinions"))
 public class NewsEntity implements Serializable {
 
     @Id

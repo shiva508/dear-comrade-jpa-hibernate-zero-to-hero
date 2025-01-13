@@ -4,6 +4,7 @@ import com.comrade.entity.NewsEntity;
 import com.comrade.entity.QNewsEntity;
 import com.comrade.entity.QOpinionEntity;
 import com.comrade.entity.specification.NewsSearchSpecification;
+import com.comrade.mapper.QueryDslBuilder;
 import com.comrade.mapper.SpecificationBuilder;
 import com.comrade.exception.NewsException;
 import com.comrade.mapper.NewEntityMapper;
@@ -12,6 +13,7 @@ import com.comrade.model.SearchModel;
 import com.comrade.model.SearchResultModel;
 import com.comrade.repository.NewsRepository;
 import com.comrade.util.OperationType;
+import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +35,8 @@ public class NewsServiceImpl implements NewsService{
     private final SpecificationBuilder specificationBuilder;
 
     private final NewEntityMapper newEntityMapper;
+
+    private final QueryDslBuilder queryDslBuilder;
 
     @Override
     @Transactional
@@ -94,13 +98,9 @@ public class NewsServiceImpl implements NewsService{
     public SearchResultModel searchByQueryDsl(SearchModel searchModel){
         try {
             log.info("searchByQueryDsl::started");
-            boolean isTitleFilter = specificationBuilder.isFilterApplied(searchModel.getNewsTitle());
-            QNewsEntity qNewsEntity = QNewsEntity.newsEntity;
-            QOpinionEntity qOpinionEntity = QOpinionEntity.opinionEntity;
-            //BooleanExpression eq = qOpinionEntity.leaderName.eq(searchModel.getChildOpinionDesc());
-            BooleanExpression like = qNewsEntity.newsTitle.like("%" + searchModel + "%");
+            Predicate predicate = queryDslBuilder.dynamicQueryBuilder(searchModel);
             Pageable pageable = PageRequest.of(searchModel.getPage(), searchModel.getSize());
-            Page<NewsEntity> newsEntities = newsRepository.findAll(like, pageable);
+            Page<NewsEntity> newsEntities = newsRepository.findAll(predicate, pageable);
             SearchResultModel searchResultModel = newEntityMapper.searchResultMapper(newsEntities);
             log.info("searchByQueryDsl::completed");
             return searchResultModel;
