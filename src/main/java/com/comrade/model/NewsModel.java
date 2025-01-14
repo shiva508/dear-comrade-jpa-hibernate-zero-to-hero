@@ -18,4 +18,6 @@ public class NewsModel implements Serializable {
     private Timestamp createdAt;
 
     private Timestamp modifiedAt;
+
+    private List<PresenterModel> presenters = new ArrayList<>();
 }
