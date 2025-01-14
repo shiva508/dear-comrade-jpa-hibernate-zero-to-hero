@@ -1,9 +1,13 @@
 package com.comrade.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "NEWS_TBL")
@@ -27,4 +31,8 @@ public class NewsEntity implements Serializable {
     @Column(name = "MODIFIED_AT")
     private Timestamp modifiedAt;
 
+    @OneToMany(mappedBy = "newsEntity")
+    @JsonIgnore
+    @ToString.Exclude
+    private List<OpinionEntity> opinions;
 }
