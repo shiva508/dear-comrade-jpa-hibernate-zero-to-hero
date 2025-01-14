@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serializable;
 
@@ -26,10 +28,9 @@ public class OpinionEntity implements Serializable {
     @Column(name = "LEADER_NAME")
     private String leaderName;
 
-    @ManyToOne
-    @JsonIgnore
-    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(nullable = false, name = "NEWS_ID")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     public NewsEntity newsEntity;
-
 
 }

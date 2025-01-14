@@ -2,8 +2,6 @@ package com.comrade.controller;
 
 import com.comrade.entity.NewsEntity;
 import com.comrade.model.NewsModel;
-import com.comrade.model.SearchModel;
-import com.comrade.model.SearchResultModel;
 import com.comrade.service.NewsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

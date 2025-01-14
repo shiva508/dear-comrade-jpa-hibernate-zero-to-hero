@@ -12,12 +12,20 @@ import java.util.Date;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler({NewsException.class})
-    public ResponseEntity<CommonResponse> newsExceptionHandler(Exception exception){
+    public ResponseEntity<CommonResponse> newsExceptionHandler(NewsException exception){
         CommonResponse commonResponse = CommonResponse.builder()
                                              .message(exception.getMessage())
                                              .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                                              .timestamp(new Date()).build();
         return new ResponseEntity<>(commonResponse, HttpStatus.BAD_REQUEST);
+    }
 
+    @ExceptionHandler({OpinionException.class})
+    public ResponseEntity<CommonResponse> opinionExceptionHandler(OpinionException exception){
+        CommonResponse commonResponse = CommonResponse.builder()
+                .message(exception.getMessage())
+                .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .timestamp(new Date()).build();
+        return new ResponseEntity<>(commonResponse, HttpStatus.BAD_REQUEST);
     }
 }

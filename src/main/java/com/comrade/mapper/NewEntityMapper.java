@@ -16,27 +16,13 @@ public class NewEntityMapper {
 
     public NewsEntity modelToEntityMapper(NewsModel newsModel){
         NewsEntity newsEntity = new NewsEntity();
-        List<OpinionModel> opinionModels = newsModel.getOpinions();
         BeanUtils.copyProperties(newsModel, newsEntity);
-        newsEntity.getOpinions().clear();
-        opinionModels.forEach(opinionModel -> {
-            OpinionEntity opinionEntity = new OpinionEntity();
-            BeanUtils.copyProperties(opinionModel, opinionEntity);
-            newsEntity.addOpinion(opinionEntity);
-        });
         return newsEntity;
     }
 
     public NewsModel entityToModelMapper(NewsEntity newsEntity){
         NewsModel newsModel = new NewsModel();
         BeanUtils.copyProperties(newsEntity, newsModel);
-        List<OpinionEntity> opinions = newsEntity.getOpinions();
-        List<OpinionModel> opinionModels = opinions.stream().map(opinionEntity -> {
-            OpinionModel opinionModel = new OpinionModel();
-            BeanUtils.copyProperties(opinionEntity, opinionModel);
-            return opinionModel;
-        }).toList();
-        newsModel.setOpinions(opinionModels);
         return newsModel;
     }
 

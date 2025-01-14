@@ -9,16 +9,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface NewsRepository extends JpaRepository<NewsEntity, Long>{
 
-    @EntityGraph(type = EntityGraph.EntityGraphType.FETCH,
-    attributePaths = {
-            "newsId",
-            "newsTitle",
-            "newsAuthor",
-            "createdAt",
-            "modifiedAt",
-            "opinions"
-    })
-    Page<NewsEntity> findAll(Specification<NewsEntity> specification, Pageable pageable);
-
-
 }

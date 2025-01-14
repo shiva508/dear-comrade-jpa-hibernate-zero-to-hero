@@ -13,4 +13,6 @@ public class OpinionModel implements Serializable {
     private String opinionDesc;
 
     private String leaderName;
+
+    private Long newsId;
 }
