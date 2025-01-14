@@ -32,6 +32,13 @@ public class NewEntityMapper {
     public NewsModel entityToModelMapper(NewsEntity newsEntity){
         NewsModel newsModel = new NewsModel();
         BeanUtils.copyProperties(newsEntity, newsModel);
+        List<PresenterEntity> presenters = newsEntity.getPresenters();
+        List<PresenterModel> presenterModels = presenters.stream().map(presenterEntity -> {
+            PresenterModel presenterModel = new PresenterModel();
+            BeanUtils.copyProperties(presenterEntity, presenterModel);
+            return presenterModel;
+        }).toList();
+        newsModel.setPresenters(presenterModels);
         return newsModel;
     }
 
