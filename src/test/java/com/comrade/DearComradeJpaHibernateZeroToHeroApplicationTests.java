@@ -8,6 +8,7 @@ class DearComradeJpaHibernateZeroToHeroApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }

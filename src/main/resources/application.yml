@@ -1,16 +1,31 @@
+
 spring:
   application:
     name: dear-comrade-jpa-hibernate-zero-to-hero
   datasource:
-    url: jdbc:postgresql://172.21.0.2:5432/dha
+    url: jdbc:postgresql://localhost:5432/dha
     username: comrade
     password: dear
+    hikari:
+      connection-timeout: 2000
+      maximum-pool-size: 5
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+    open-in-view: false
 
+server:
+  shutdown: GRACEFUL
+  tomcat:
+    connection-timeout: 2s
+    keep-alive-timeout: 15s
+    threads:
+      min-spare: 5
+      max: 50
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
 
+mapper:
+  news: "newsId,newsTitle,newsAuthor,createdAt,modifiedAt,opinions"
