@@ -45,7 +45,7 @@ public class NewsController {
     }
 
     @PostMapping("/search-querydsl")
-    public ResponseEntity<SearchResultModel> searchByQueryDsl(SearchModel searchModel){
+    public ResponseEntity<SearchResultModel> searchByQueryDsl(@RequestBody SearchModel searchModel){
         log.info("searchByQueryDsl::started");
         SearchResultModel searchResultModel = newsService.searchByQueryDsl(searchModel);
         log.info("searchByQueryDsl::completed");

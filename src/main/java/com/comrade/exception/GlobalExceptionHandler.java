@@ -18,6 +18,5 @@ public class GlobalExceptionHandler {
                                              .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                                              .timestamp(new Date()).build();
         return new ResponseEntity<>(commonResponse, HttpStatus.BAD_REQUEST);
-
     }
 }

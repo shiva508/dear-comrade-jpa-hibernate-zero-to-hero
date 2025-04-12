@@ -1,8 +1,6 @@
 package com.comrade.service;
 
 import com.comrade.entity.NewsEntity;
-import com.comrade.entity.QNewsEntity;
-import com.comrade.entity.QOpinionEntity;
 import com.comrade.entity.specification.NewsSearchSpecification;
 import com.comrade.mapper.QueryDslBuilder;
 import com.comrade.mapper.SpecificationBuilder;
@@ -12,9 +10,9 @@ import com.comrade.model.NewsModel;
 import com.comrade.model.SearchModel;
 import com.comrade.model.SearchResultModel;
 import com.comrade.repository.NewsRepository;
+import com.comrade.util.DcConstants;
 import com.comrade.util.OperationType;
 import com.querydsl.core.types.Predicate;
-import com.querydsl.core.types.dsl.BooleanExpression;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -76,11 +74,11 @@ public class NewsServiceImpl implements NewsService{
             NewsSearchSpecification newsSearchSpecification = new NewsSearchSpecification();
 
             boolean isTitleFilter = specificationBuilder.isFilterApplied(searchModel.getNewsTitle());
-            specificationBuilder.queryGenerator(isTitleFilter, newsSearchSpecification, "newsTitle", searchModel.getNewsTitle(), OperationType.LIKE, false);
+            specificationBuilder.queryGenerator(isTitleFilter, newsSearchSpecification, DcConstants.FIELD_NEWS_TITLE, searchModel.getNewsTitle(), OperationType.LIKE, false);
 
             boolean isChildOpnDescTitleFilter = specificationBuilder.isFilterApplied(searchModel.getChildOpinionDesc());
 
-            specificationBuilder.queryGenerator(isChildOpnDescTitleFilter, newsSearchSpecification, "leaderName", searchModel.getChildOpinionDesc(), OperationType.EQUAL, true);
+            specificationBuilder.queryGenerator(isChildOpnDescTitleFilter, newsSearchSpecification, DcConstants.FIELD_LEADER_NAME, searchModel.getChildOpinionDesc(), OperationType.EQUAL, true);
 
             Pageable pageable = PageRequest.of(searchModel.getPage(), searchModel.getSize());
             Page<NewsEntity> newsEntities = newsRepository.findAll(newsSearchSpecification, pageable);

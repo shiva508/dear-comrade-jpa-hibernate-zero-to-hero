@@ -4,6 +4,7 @@ import com.comrade.entity.NewsEntity;
 import com.comrade.entity.OpinionEntity;
 import com.comrade.entity.specification.NewsSearchSpecification;
 import com.comrade.model.SearchCriteria;
+import com.comrade.util.DcConstants;
 import com.comrade.util.OperationType;
 import jakarta.persistence.criteria.*;
 import org.apache.commons.lang3.StringUtils;
@@ -37,7 +38,7 @@ public class SpecificationBuilder {
 
     public Specification<NewsEntity> opinionCount(String attributeName, String attributeValue){
         return (root, query, criteriaBuilder) -> {
-            Join<Object, OpinionEntity> opinionEntities = root.join("opinions");
+            Join<Object, OpinionEntity> opinionEntities = root.join(DcConstants.FIELD_OPINIONS);
             query.where(criteriaBuilder.equal(opinionEntities.get(attributeName), attributeValue));
             return query.getRestriction();
         };

@@ -1,14 +1,10 @@
 package com.comrade.mapper;
 
 import com.comrade.entity.QNewsEntity;
-import com.comrade.entity.QOpinionEntity;
 import com.comrade.model.SearchModel;
 import com.comrade.util.DcConstants;
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.Path;
 import com.querydsl.core.types.Predicate;
-import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.BooleanOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
